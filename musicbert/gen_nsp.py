@@ -19,7 +19,7 @@ if __name__ == '__main__':
     task = input('task = ')
     assert task in ['next', 'acc']
     input_file_dir = '../context_{}'.format(task)   
-    output_file_dir = '{}_augplusdata_raw'.format(task)
+    output_file_dir = '{}_converteddata_raw'.format(task)
     if os.path.exists(output_file_dir):
         print('Output path {} already exists!'.format(output_file_dir))
         sys.exit(0)
