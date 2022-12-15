@@ -1,63 +1,18 @@
-# PiRhDy: Learning Pitch-, Rhythm-, and Dynamics-aware Embeddings for Symbolic Music (ACM MM 2020 BEST PAPER)
+## Music Recommendation System by leveraging Accompaniment Suggestion of MusicBERT
 
-<https://dl.acm.org/doi/pdf/10.1145/3394171.3414032> or <https://arxiv.org/abs/2010.08091>
+Junsoo Lee, Soowung Shin
 
-For citation:
+PiRhDy data generation code taken and modified from https://github.com/mengshor/PiRhDy
 
+musicBERT model taken from https://github.com/microsoft/muzic/tree/main/musicbert
 
-        @inproceedings{        
+### instruction
+run PiRhDy.ipynb after putting midi files in dataset/lakh_dataset/{folder names} to create context embedded dataset.
 
-                                liang2020pirhdy,        
+After the data is created in context_acc, run musicBERT_data.ipynb to convert the dataset into OctupleMIDI format.
 
-                                title={PiRhDy: Learning Pitch-, Rhythm-, and Dynamics-aware Embeddings for Symbolic Music},                        
+Alternatively, unzip acc_data_bin.zip(data used for finetuning) acc_augdata_bin.zip(data used for inference) in musicbert folder to skip the previous steps or to use the same data used for the experiment.
 
-                                author={Liang, Hongru and Lei, Wenqiang and Chan, Paul Yaozhu and Yang, Zhenglu and Sun, Maosong and Chua, Tat-Seng},                       
+download the [MusicBERT base pre-trained checkpoint](https://msramllasc.blob.core.windows.net/modelrelease/checkpoint_last_musicbert_base.pt) or the checkpoint used for the experiment [here](https://drive.google.com/file/d/1IxFu4qdcUyBj4ghZx1Tn8H_OrVCf4PJK/view?usp=share_link), and put them in the musicbert/checkpoints folder
 
-                                booktitle={Proceedings of the 28th ACM International Conference on Multimedia},                       
-
-                                pages={574--582},                      
-
-                                year={2020}                       
-
-                       }
-
-*We suggest you to generate all datasets by yourself, as the datasets are too huge to deliver. *
-
-Any further question, pls email **lianghongru@scu.edu.cn (first author)** or **wenqianglei@scu.edu.com (corresponding author)**.
-
-step 1: normalize original midi files: time normalization, key tranformation, etc.
-
-
-step 2: transform midi files into time-pitch matrices
-
-
-step 3: analysis chord in midi file: not necessary to re-run the files, all needed files already in this dir
-
-
-step 4: transform matrices into quadruple sequences: (chroma, octave, velocity, state), the final format
-
-
-step 5: 
-
-
-        1) generate datasets for token modeling dataset 
-        
-        2) token modeling
-           **pre-trained models are in pre-trained-models**
-
-
-step 6: 
-
-
-        1) transform sequence to bars         
-        
-        2) transform bars into phrases        
-        
-        3) generate dataset for context modeling         
-        
-        4) context modeling and downstream tasks
-           **embeddings pre-trained through token modeling are in "embeddings", models fine-tuned by context modeling are in "pre-trained models".**
-        
-
-
-
+run musicbert.ipynb to either finetune the model or run inference on them
